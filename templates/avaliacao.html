@@ -19,7 +19,6 @@
 		<script src="static/js/select2.min.js"></script>
 	</head>
     <body>
-
        <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
            <div class="container">
@@ -40,46 +39,48 @@
 	   <div class="limiter">
 	   	<div class="container-login100" style="background-image: url('static/images/img-01.jpg');">
 	   		<div class="wrap-login100 p-t-60 p-b-30">
-			   <form class="navbar-form navbar-left" action="{{ url_for('cadastro') }}" method="POST">
+			   <form class="navbar-form navbar-left" action="{{ url_for('avaliacao') }}" method="POST">
 
 	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="text" name="nome" placeholder="Nome">
+	   					<input class="input100" type="text" name="placa" placeholder="Placa do ônibus">
 	   					<span class="focus-input100"></span>
 	   				</div>
 
 	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="text" name="bairro" placeholder="Bairro">
+	   					<input class="input100" type="text" name="linha" placeholder="Linha">
 	   					<span class="focus-input100"></span>
 	   				</div>
 
 	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="text" name="cidade" placeholder="Cidade">
+	   					<input class="input100" type="text" name="viacao" placeholder="Viação">
 	   					<span class="focus-input100"></span>
 	   				</div>
 
 	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="text" name="estado" placeholder="Estado">
+                        <select class="input100" name="nota">
+                          <option value="" disabled selected>Selecione uma nota</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                        </select>
 	   					<span class="focus-input100"></span>
 	   				</div>
 
 	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="text" name="cpf" placeholder="CPF">
-	   					<span class="focus-input100"></span>
-	   				</div>
-
-	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="text" name="email" placeholder="E-mail">
-	   					<span class="focus-input100"></span>
-	   				</div>
-
-	   				<div class="wrap-input100 m-b-10">
-	   					<input class="input100" type="password" name="password" placeholder="Senha">
+                        <textarea class="input100" name="comentario" rows="3" placeholder="Seu comentário"></textarea>
 	   					<span class="focus-input100"></span>
 	   				</div>
 
 	   				<div class="container100-form-btn p-t-10">
 	   					<button class="btn100-form-btn">
-                          Cadastrar
+                          Cadastar avaliação
 	   					</button>
 	   				</div>
 

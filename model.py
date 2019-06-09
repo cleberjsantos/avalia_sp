@@ -28,6 +28,7 @@ class Usuario(db.Model, AuthUser):
     cidade = Column(String(30))
     estado = Column(String(20))
     data_criacao = Column(DateTime(), default=datetime.datetime.utcnow())
+    avaliacao = db.relationship('Avaliacao', backref='avaliacao', lazy='dynamic')
 
     def __init__(self, salt, password, cpf, email, nome, bairro, cidade, estado):
         self.salt = salt
@@ -74,17 +75,19 @@ class Avaliacao(db.Model):
     nota = Column(Integer, nullable=False, index=True)
     comentario = Column(Text, nullable=False, index=True)
     placa = Column(String, nullable=True)
+    usuario = Column(String, ForeignKey('usuario.cpf'), nullable=False)
     linha = Column(String, nullable=True)
     viacao = Column(String, nullable=False)
     data_criacao = Column(DateTime(), default=datetime.datetime.utcnow())
     data_avaliacao = Column(DateTime(), default=datetime.datetime.utcnow())
 
-    def __init__(self, nota, comentario, placa, linha, viacao):
+    def __init__(self, nota, comentario, placa, linha, viacao, usuario):
         self.nota = nota
         self.comentario = comentario
         self.placa = placa
         self.linha = linha
         self.viacao = viacao
+        self.usuario = usuario
 
     def __repr__(self):
         return '<Avaliacao {}>'.format(self.id_avaliacao)

@@ -67,8 +67,13 @@ def create_app(config_class=Config):
         @login_required()
         def avaliacao():
             if request.method == "POST":
-
-                p = Avaliacao()
+                nota = (request.form.get("nota"))
+                placa = (request.form.get("placa"))
+                linha = (request.form.get("linha"))
+                viacao = (request.form.get("viacao"))
+                comentario = (request.form.get("comentario"))
+                usuario = session['auth_user']['cpf']
+                p = Avaliacao(nota, comentario, placa, linha, viacao, usuario)
                 db.session.add(p)
                 db.session.commit()
                 return redirect(url_for("home"))
