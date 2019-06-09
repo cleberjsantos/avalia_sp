@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <link rel="stylesheet" type="text/css" href="static/css/icon-font.min.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/animate.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/hamburgers.min.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/select2.min.css">
+		<link rel="stylesheet" href="static/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
+
+	    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="static/css/util.css">
+
+        <script src="static/js/jquery.min.js"></script>
+		<script src="static/js/bootstrap.min.js"></script>
+		<script src="static/js/select2.min.js"></script>
+	</head>
+    <body>
+
+       <div class="navbar navbar-fixed-top">
+         <div class="navbar-inner">
+           <div class="container">
+            <div class="nav-collapse">
+              <ul class="nav">
+                {% if session['auth_user'] %}
+                   <li><span class="p-r-20"><i class="fa fa-user"></i> {{ session['auth_user']['nome']  }}</span>
+                       <a class="text-white" href="{{ url_for('logout') }}"> [ Sair ] </a></li>
+                {% endif %}
+
+              </ul>
+            </div><!--/.nav-collapse -->
+
+           </div>
+         </div>
+       </div>
+
+	   <div class="limiter">
+	   	<div class="container-login100" style="background-image: url('static/images/img-01.jpg');">
+	   		<div class="wrap-login100 p-t-60 p-b-30">
+			   <form class="navbar-form navbar-left" action="{{ url_for('cadastro') }}" method="POST">
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="text" name="nome" placeholder="Nome">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="text" name="bairro" placeholder="Bairro">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="text" name="cidade" placeholder="Cidade">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="text" name="estado" placeholder="Estado">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="text" name="cpf" placeholder="CPF">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="text" name="email" placeholder="E-mail">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="wrap-input100 m-b-10">
+	   					<input class="input100" type="password" name="password" placeholder="Senha">
+	   					<span class="focus-input100"></span>
+	   				</div>
+
+	   				<div class="container100-form-btn p-t-10">
+	   					<button class="btn100-form-btn">
+                          Cadastrar
+	   					</button>
+	   				</div>
+
+	   				<div class="text-center w-full p-t-25 p-b-230">
+	   					<a href="{{ url_for('home') }}" class="txt1">
+	   						Voltar
+	   					</a>
+	   				</div>
+			   </form>
+	   		</div>
+	   	</div>
+	   </div>
+	</body>
+</html>

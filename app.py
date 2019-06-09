@@ -6,7 +6,7 @@ import random
 from string import ascii_letters
 from db import config_db, db
 from flask import Flask, render_template, request, url_for, redirect
-from model import Usuario
+from model import Usuario, Avaliacao
 from flaskext.auth import Auth, AuthUser, login_required, logout
 from flaskext.auth.auth import SESSION_USER_KEY, SESSION_LOGIN_KEY
 
@@ -66,7 +66,13 @@ def create_app(config_class=Config):
 
         @login_required()
         def avaliacao():
-            return 'Admin! Excellent!'
+            if request.method == "POST":
+
+                p = Avaliacao()
+                db.session.add(p)
+                db.session.commit()
+                return redirect(url_for("home"))
+            return render_template('avaliacao.html')
 
         def logout_view():
             user_data = logout()
