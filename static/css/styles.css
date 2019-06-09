@@ -588,3 +588,8 @@ iframe {
     padding-right: 15px;
   }
 }
+
+.navbar {
+    background: #333 !important;
+    color: #fff !important;
+}
