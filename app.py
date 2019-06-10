@@ -25,6 +25,7 @@ def create_app(config_class=Config):
         db.create_all()
 
         def index():
+            session_data = session.get(SESSION_USER_KEY, None)
             if request.method == 'POST':
                 cpf = request.form['cpf']
                 user = Usuario.query.filter(Usuario.cpf == cpf).one_or_none()
@@ -35,9 +36,22 @@ def create_app(config_class=Config):
                         session[SESSION_LOGIN_KEY] = datetime.datetime.utcnow()
                         return redirect(url_for('avaliacao'))
                 return 'Failure :('
+
+            if session_data:
+                cpf = session_data.get('cpf', None)
+                if cpf:
+                    avaliacoes = Avaliacao.query.filter(Avaliacao.usuario == cpf).all()
+                return render_template("lista.html", avaliacoes=avaliacoes)
             return render_template('index.html')
 
         def home():
+            session_data = session.get(SESSION_USER_KEY, None)
+            if session_data:
+                cpf = session_data.get('cpf', None)
+                if cpf:
+                    avaliacoes = Avaliacao.query.filter(Avaliacao.usuario == cpf).all()
+                return render_template("lista.html", avaliacoes=avaliacoes)
+
             return render_template("index.html")
 
         def voltar():
@@ -84,12 +98,6 @@ def create_app(config_class=Config):
             if user_data is None:
                 return 'No user to log out.'
             return 'Logged out user {0}.'.format(user_data['nome'])
-
-
-        #@app.route("/lista")
-        #def lista():
-        #    usuarios = Usuario.query.all()
-        #    return render_template("lista.html", usuarios=usuarios)
 
         #@app.route("/atualizar/<int:cpf>", methods=['GET', 'POST'])
         #def atualizar(cpf):

@@ -1,46 +1,63 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Pesquisar</title>
 		<meta charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <link rel="stylesheet" type="text/css" href="static/css/icon-font.min.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/animate.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/hamburgers.min.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/select2.min.css">
 		<link rel="stylesheet" href="static/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+	    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="static/css/util.css">
 
-		<!-- Latest compiled and minified JavaScript -->
+        <script src="static/js/jquery.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
-	<body>
-		<div class="page-header">
-			<h1>Lista de Usuários</h1>
-		</div>
-		<table  class="table" border="4">
-			<tr>
-				<td>CPF</td>
-				<td>E-mail</td>
-				<td>Nome</td>
-				<td>Cadastrado</td>
-				<td>Bairro</td>
-				<td>Cidade</td>
-				<td>Estado</td>
-				<td>Excluir</td>
-				<td>Editar</td>
-			</tr>
-			{% for usuario in usuarios %}
-				<tr>
-					<td>{{ usuario.cpf }}</td>
-					<td>{{ usuario.email }}</td>
-					<td>{{ usuario.nome }}</td>
-					<td>{{ usuario.date_created.strftime('%d-%m-%Y %H:%M:%S') }}</td>
-					<td>{{ usuario.bairro }}</td>
-					<td>{{ usuario.cidade }}</td>
-					<td>{{ usuario.estado }}</td>
-					<td><center><a href="/excluir/{{ usuario.cpf }}">Remover</a></center></td>
-					<td><center><a href="/atualizar/{{ usuario.cpf }}">Alterar</a></center></td>
-				</tr>
-			{% endfor %}
-		</table><br>
-		<a href="{{ url_for('home') }}"><input type="button" class="btn btn-primary btn-lg" value="Voltar"></a>
+		<script src="static/js/select2.min.js"></script>
+	</head>
+    <body>
+       <div class="navbar navbar-fixed-top">
+         <div class="navbar-inner">
+           <div class="container">
+            <div class="nav-collapse">
+              <ul class="nav">
+                {% if session['auth_user'] %}
+                   <li><span class="p-r-10"><i class="fa fa-user"></i> {{ session['auth_user']['nome']  }}</span>
+		               <a href="{{ url_for('avaliacao') }}"><input type="button" class="btn btn-success" value="Avaliar"></a>
+                       <a class="text-white" href="{{ url_for('logout') }}"><input type="button" class="btn btn-danger" value="Sair"></a></li>
+                {% endif %}
+
+              </ul>
+            </div><!--/.nav-collapse -->
+
+           </div>
+         </div>
+       </div>
+
+	   <div class="limiter">
+	   	<div class="container-login100" style="background-image: url('static/images/img-01.jpg');">
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+		          <th scope="col">Viação</td>
+		          <th scope="col">Data da avaliação</td>
+		          <th scope="col">Nota</td>
+                </tr>
+		      </thead>
+              <tbody>
+		    	{% for avaliacao in avaliacoes %}
+		    		<tr>
+		    			<th>{{ avaliacao.viacao }}</td>
+		    			<th>{{ avaliacao.data_avaliacao.strftime('%d-%m-%Y %H:%M:%S') }}</td>
+		    			<th>{{ avaliacao.nota }}</td>
+		    		</tr>
+		    	{% endfor %}
+              </tbody>
+            </table>
+	   	</div>
+	   </div>
 	</body>
 </html>

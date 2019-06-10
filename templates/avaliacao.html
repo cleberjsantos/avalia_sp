@@ -25,8 +25,8 @@
             <div class="nav-collapse">
               <ul class="nav">
                 {% if session['auth_user'] %}
-                   <li><span class="p-r-20"><i class="fa fa-user"></i> {{ session['auth_user']['nome']  }}</span>
-                       <a class="text-white" href="{{ url_for('logout') }}"> [ Sair ] </a></li>
+                   <li><span class="p-r-10"><i class="fa fa-user"></i> {{ session['auth_user']['nome']  }}</span>
+                       <a class="text-white" href="{{ url_for('logout') }}"><input type="button" class="btn btn-danger" value="Sair"></a></li>
                 {% endif %}
 
               </ul>

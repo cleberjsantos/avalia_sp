@@ -78,7 +78,6 @@ class Avaliacao(db.Model):
     usuario = Column(String, ForeignKey('usuario.cpf'), nullable=False)
     linha = Column(String, nullable=True)
     viacao = Column(String, nullable=False)
-    data_criacao = Column(DateTime(), default=datetime.datetime.utcnow())
     data_avaliacao = Column(DateTime(), default=datetime.datetime.utcnow())
 
     def __init__(self, nota, comentario, placa, linha, viacao, usuario):
